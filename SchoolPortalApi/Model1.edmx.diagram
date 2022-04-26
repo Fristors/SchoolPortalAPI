@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0acceb1d786445efa33b7337f6c430d2" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Class" Width="1.5" PointX="8.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.DayOfWeek" Width="1.5" PointX="13.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Gender" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Lesson" Width="1.5" PointX="13.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Position" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Relative" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Role" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Student" Width="1.5" PointX="10.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Subject" Width="1.5" PointX="11.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Teacher" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.TimeTable" Width="1.5" PointX="15.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.User" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Student_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_TimeTable_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_TimeTable_DayOfWeek" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Relative_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Student_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Teacher_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Lesson_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Lesson_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Teacher_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Relative_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Student_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Teacher_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.StudentRelative" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolPortalAPIModel.TimeTableLesson" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Dialog" Width="1.5" PointX="5.25" PointY="8.875" />
+        <EntityTypeShape EntityType="SchoolPortalAPIModel.Message" Width="1.5" PointX="7.5" PointY="9" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Dialog_User" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Dialog_User1" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Message_Dialog" />
+        <AssociationConnector Association="SchoolPortalAPIModel.FK_Message_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

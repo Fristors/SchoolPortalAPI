@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolPortalAPIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_Class" FromRole="Class" ToRole="Student" />
+    <NavigationProperty Name="TimeTable" Relationship="Self.FK_TimeTable_Class" FromRole="Class" ToRole="TimeTable" />
+  </EntityType>
+  <EntityType Name="DayOfWeek">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TimeTable" Relationship="Self.FK_TimeTable_DayOfWeek" FromRole="DayOfWeek" ToRole="TimeTable" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Relative" Relationship="Self.FK_Relative_Gender" FromRole="Gender" ToRole="Relative" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_Gender" FromRole="Gender" ToRole="Student" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK_Teacher_Gender" FromRole="Gender" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Lesson">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassRoom" Type="Int32" Nullable="false" />
+    <Property Name="NumLesson" Type="Int32" Nullable="false" />
+    <Property Name="idSubject" Type="Int32" Nullable="false" />
+    <Property Name="idTeacher" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK_Lesson_Subject" FromRole="Lesson" ToRole="Subject" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK_Lesson_Teacher" FromRole="Lesson" ToRole="Teacher" />
+    <NavigationProperty Name="TimeTable" Relationship="Self.TimeTableLesson" FromRole="Lesson" ToRole="TimeTable" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK_Teacher_Position" FromRole="Position" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Relative">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MidName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="idGender" Type="Int32" Nullable="false" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Relative_Gender" FromRole="Relative" ToRole="Gender" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Relative_User" FromRole="Relative" ToRole="User" />
+    <NavigationProperty Name="Student" Relationship="Self.StudentRelative" FromRole="Relative" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MidName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idClass" Type="Int32" Nullable="false" />
+    <Property Name="idGender" Type="Int32" Nullable="false" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK_Student_Class" FromRole="Student" ToRole="Class" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Student_Gender" FromRole="Student" ToRole="Gender" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Student_User" FromRole="Student" ToRole="User" />
+    <NavigationProperty Name="Relative" Relationship="Self.StudentRelative" FromRole="Student" ToRole="Relative" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Lesson" Relationship="Self.FK_Lesson_Subject" FromRole="Subject" ToRole="Lesson" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MidName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idPosition" Type="Int32" Nullable="false" />
+    <Property Name="idGender" Type="Int32" Nullable="false" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Teacher_Gender" FromRole="Teacher" ToRole="Gender" />
+    <NavigationProperty Name="Lesson" Relationship="Self.FK_Lesson_Teacher" FromRole="Teacher" ToRole="Lesson" />
+    <NavigationProperty Name="Position" Relationship="Self.FK_Teacher_Position" FromRole="Teacher" ToRole="Position" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Teacher_User" FromRole="Teacher" ToRole="User" />
+  </EntityType>
+  <EntityType Name="TimeTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="idDayOfWeek" Type="Int32" Nullable="false" />
+    <Property Name="idClass" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK_TimeTable_Class" FromRole="TimeTable" ToRole="Class" />
+    <NavigationProperty Name="DayOfWeek" Relationship="Self.FK_TimeTable_DayOfWeek" FromRole="TimeTable" ToRole="DayOfWeek" />
+    <NavigationProperty Name="Lesson" Relationship="Self.TimeTableLesson" FromRole="TimeTable" ToRole="Lesson" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idRole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Relative" Relationship="Self.FK_Relative_User" FromRole="User" ToRole="Relative" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_User" FromRole="User" ToRole="Student" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK_Teacher_User" FromRole="User" ToRole="Teacher" />
+    <NavigationProperty Name="Dialog" Relationship="SchoolPortalAPIModel.FK_Dialog_User" FromRole="User" ToRole="Dialog" />
+    <NavigationProperty Name="Dialog1" Relationship="SchoolPortalAPIModel.FK_Dialog_User1" FromRole="User" ToRole="Dialog" />
+    <NavigationProperty Name="Message" Relationship="SchoolPortalAPIModel.FK_Message_User" FromRole="User" ToRole="Message" />
+  </EntityType>
+  <Association Name="FK_Student_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="idClass" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TimeTable_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="TimeTable" Type="Self.TimeTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TimeTable">
+        <PropertyRef Name="idClass" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TimeTable_DayOfWeek">
+    <End Role="DayOfWeek" Type="Self.DayOfWeek" Multiplicity="1" />
+    <End Role="TimeTable" Type="Self.TimeTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DayOfWeek">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TimeTable">
+        <PropertyRef Name="idDayOfWeek" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Relative_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Relative" Type="Self.Relative" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Relative">
+        <PropertyRef Name="idGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="idGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="idGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lesson_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Lesson">
+        <PropertyRef Name="idSubject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lesson_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Lesson">
+        <PropertyRef Name="idTeacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Position">
+    <End Role="Position" Type="Self.Position" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="idPosition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Relative_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Relative" Type="Self.Relative" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Relative">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="idRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StudentRelative">
+    <End Role="Relative" Type="Self.Relative" Multiplicity="*" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+  </Association>
+  <Association Name="TimeTableLesson">
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+    <End Role="TimeTable" Type="Self.TimeTable" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="SchoolPortalAPIEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Class" EntityType="Self.Class" />
+    <EntitySet Name="DayOfWeek" EntityType="Self.DayOfWeek" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" />
+    <EntitySet Name="Lesson" EntityType="Self.Lesson" />
+    <EntitySet Name="Position" EntityType="Self.Position" />
+    <EntitySet Name="Relative" EntityType="Self.Relative" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Student" EntityType="Self.Student" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+    <EntitySet Name="TimeTable" EntityType="Self.TimeTable" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Student_Class" Association="Self.FK_Student_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TimeTable_Class" Association="Self.FK_TimeTable_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="TimeTable" EntitySet="TimeTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TimeTable_DayOfWeek" Association="Self.FK_TimeTable_DayOfWeek">
+      <End Role="DayOfWeek" EntitySet="DayOfWeek" />
+      <End Role="TimeTable" EntitySet="TimeTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Relative_Gender" Association="Self.FK_Relative_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Relative" EntitySet="Relative" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Gender" Association="Self.FK_Student_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Gender" Association="Self.FK_Teacher_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lesson_Subject" Association="Self.FK_Lesson_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Lesson" EntitySet="Lesson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lesson_Teacher" Association="Self.FK_Lesson_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Lesson" EntitySet="Lesson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Position" Association="Self.FK_Teacher_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Relative_User" Association="Self.FK_Relative_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Relative" EntitySet="Relative" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_User" Association="Self.FK_Student_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_User" Association="Self.FK_Teacher_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="StudentRelative" Association="Self.StudentRelative">
+      <End Role="Relative" EntitySet="Relative" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="TimeTableLesson" Association="Self.TimeTableLesson">
+      <End Role="Lesson" EntitySet="Lesson" />
+      <End Role="TimeTable" EntitySet="TimeTable" />
+    </AssociationSet>
+    <EntitySet Name="Dialog" EntityType="SchoolPortalAPIModel.Dialog" />
+    <EntitySet Name="Message" EntityType="SchoolPortalAPIModel.Message" />
+    <AssociationSet Name="FK_Dialog_User" Association="SchoolPortalAPIModel.FK_Dialog_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Dialog" EntitySet="Dialog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dialog_User1" Association="SchoolPortalAPIModel.FK_Dialog_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Dialog" EntitySet="Dialog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Dialog" Association="SchoolPortalAPIModel.FK_Message_Dialog">
+      <End Role="Dialog" EntitySet="Dialog" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_User" Association="SchoolPortalAPIModel.FK_Message_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Dialog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idFirstUser" Type="Int32" Nullable="false" />
+    <Property Name="idSecondUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="SchoolPortalAPIModel.FK_Dialog_User" FromRole="Dialog" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="SchoolPortalAPIModel.FK_Dialog_User1" FromRole="Dialog" ToRole="User" />
+    <NavigationProperty Name="Message" Relationship="SchoolPortalAPIModel.FK_Message_Dialog" FromRole="Dialog" ToRole="Message" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message1" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idDialog" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dialog" Relationship="SchoolPortalAPIModel.FK_Message_Dialog" FromRole="Message" ToRole="Dialog" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="SchoolPortalAPIModel.FK_Message_User" FromRole="Message" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Dialog_User">
+    <End Type="SchoolPortalAPIModel.User" Role="User" Multiplicity="1" />
+    <End Type="SchoolPortalAPIModel.Dialog" Role="Dialog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Dialog">
+        <PropertyRef Name="idFirstUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dialog_User1">
+    <End Type="SchoolPortalAPIModel.User" Role="User" Multiplicity="1" />
+    <End Type="SchoolPortalAPIModel.Dialog" Role="Dialog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Dialog">
+        <PropertyRef Name="idSecondUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Dialog">
+    <End Type="SchoolPortalAPIModel.Dialog" Role="Dialog" Multiplicity="1" />
+    <End Type="SchoolPortalAPIModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dialog">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="idDialog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_User">
+    <End Type="SchoolPortalAPIModel.User" Role="User" Multiplicity="1" />
+    <End Type="SchoolPortalAPIModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
